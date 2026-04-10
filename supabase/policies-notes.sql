@@ -1,0 +1,20 @@
+-- PostgreSQL RLS cannot directly reference OLD values inside a policy expression.
+-- For hard production enforcement of column-level update scopes, pair the broad role
+-- policies in rls.sql with SECURITY DEFINER RPC functions or BEFORE UPDATE triggers
+-- that reject changes outside the allowed section for each role.
+--
+-- Suggested approach:
+-- 1. Revoke direct update on public.leads from authenticated.
+-- 2. Expose:
+--    public.update_lead_section(payload jsonb)
+--    public.update_caller_section(payload jsonb)
+--    public.update_demo_section(payload jsonb)
+--    public.update_owner_section(payload jsonb)
+-- 3. Inside each function:
+--    - Confirm auth.uid() role from public.profiles.
+--    - Load current row.
+--    - Apply only the allowed field list.
+--    - Enforce lifecycle validations before update.
+--
+-- The frontend in this project already scopes payloads by role, and the owner retains
+-- full update capability. This note documents the final hardening step for production.

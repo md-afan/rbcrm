@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-white text-ink antialiased;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(17, 17, 17, 0.25) transparent;
+}
+
+.panel {
+  @apply rounded-2xl border border-black/10 bg-white;
+}
+
+.dashboard-stack {
+  @apply space-y-6;
+}
+
+.page-shell {
+  @apply grid grid-cols-1 gap-6 md:grid-cols-6 xl:grid-cols-12;
+}
+
+.page-header {
+  @apply col-span-full border-b border-black/10 pb-4;
+}
+
+.stats-grid {
+  @apply col-span-full grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4;
+}
+
+.content-grid {
+  @apply col-span-full grid grid-cols-1 gap-6 md:grid-cols-6 xl:grid-cols-12;
+}
+
+.table-shell {
+  @apply col-span-full overflow-hidden rounded-2xl border border-black/10 bg-white;
+}
+
+.muted-block {
+  @apply rounded-xl border border-black/10 bg-neutral-50;
+}
+
+.grid-fade {
+  background-size: 32px 32px;
+}
+
+.soft-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(245, 245, 245, 0.95) 50%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+.float-pulse {
+  animation: floatPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes floatPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
