@@ -69,7 +69,7 @@ export function SignupForm() {
           <option value="lead">Lead Generator</option>
           <option value="caller">Caller</option>
           <option value="demo">Demo</option>
-            <option value="owner">Owner</option>
+            {/* <option value="owner">Owner</option> */}
         </select>
       </label>
 
